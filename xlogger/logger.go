@@ -129,7 +129,7 @@ func (l *DefaultLogger) Info(msg string, tags ...zap.Field) {
 // Warning logs are more important than Info, but don't need individual
 // human review.
 func (l *DefaultLogger) Warning(msg string, tags ...zap.Field) {
-	l.log.Debug(msg, tags...)
+	l.log.Warn(msg, tags...)
 }
 
 // Error logs are high-priority. If an application is running smoothly,
