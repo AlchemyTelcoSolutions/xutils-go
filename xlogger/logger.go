@@ -26,6 +26,7 @@ type Logger interface {
 	Error(msg string, err error, tags ...zap.Field)
 	Panic(msg string, err error, tags ...zap.Field)
 	Fatal(msg string, err error, tags ...zap.Field)
+	ZapLogger() *zap.Logger
 }
 
 type DefaultLogger struct {
@@ -167,6 +168,11 @@ func (l *DefaultLogger) Unwrap() *zap.Logger {
 	return l.log
 }
 
+// ZapLogger returns the underlying zap logger
+func (l *DefaultLogger) ZapLogger() *zap.Logger {
+	return l.log
+}
+
 // Print NoOp
 func (n NoOpLogger) Print(v ...interface{}) {}
 
@@ -193,3 +199,8 @@ func (n NoOpLogger) Panic(msg string, err error, tags ...zap.Field) {}
 
 // Fatal NoOp
 func (n NoOpLogger) Fatal(msg string, err error, tags ...zap.Field) {}
+
+// ZapLogger NoOp
+func (n NoOpLogger) ZapLogger() *zap.Logger {
+	return zap.NewNop()
+}
