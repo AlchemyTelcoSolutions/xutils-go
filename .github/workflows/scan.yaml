@@ -1,0 +1,9 @@
+name: Scanner
+on:
+  pull_request:
+      
+jobs:
+  snyk:
+    uses: AlchemyTelcoSolutions/.github/.github/workflows/snyk.yaml@main
+    secrets: inherit
+    
